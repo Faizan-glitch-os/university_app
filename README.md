@@ -1,6 +1,6 @@
-# smit_flutter_basics
+# flutter_inClass_task1_increment&decrement 
 
-Learning flutter basics
+First task in class to increment and decrement the number by pressing the respect floating action button
 
 ## Getting Started
 
