@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.yellowAccent),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.black),
         useMaterial3: true,
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
@@ -31,12 +31,24 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _incrementCounter = 0;
-  int _decrementCounter = 100;
+  int _decrementCounter = 0;
 
-  void _counter() {
+  void _incrementCounterFunction() {
+    setState(() {
+      _incrementCounter++;
+    });
+  }
+
+  void _decrementCounterFunction() {
     setState(() {
       _decrementCounter--;
-      _incrementCounter++;
+    });
+  }
+
+  void _reloadNumbers() {
+    setState(() {
+      _incrementCounter = 0;
+      _decrementCounter = 0;
     });
   }
 
@@ -51,15 +63,21 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            const Text(
-              'Incrementing this number:',
+            ElevatedButton(
+              onPressed: _incrementCounterFunction,
+              child: const Text(
+                'Press to Increment',
+              ),
             ),
             Text(
               '$_incrementCounter',
               style: Theme.of(context).textTheme.headlineLarge,
             ),
-            Text(
-              'Decrementing this number:',
+            ElevatedButton(
+              onPressed: _decrementCounterFunction,
+              child: const Text(
+                'Press to Decrement',
+              ),
             ),
             Text(
               '$_decrementCounter',
@@ -69,9 +87,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _counter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.remove),
+        onPressed: _reloadNumbers,
+        child: const Icon(Icons.autorenew),
       ),
     );
   }
